@@ -1,0 +1,32 @@
+import jinja2
+import os
+
+def generate_html(title, body, output_file):
+    """Generates an HTML file from a title and body using Jinja2."""
+
+    template_string = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        <p>{{ body }}</p>
+    </body>
+    </html>
+    """
+
+    template = jinja2.Template(template_string)
+    html_content = template.render(title=title, body=body)
+
+    with open(output_file, "w") as f:
+        f.write(html_content)
+
+if __name__ == "__main__":
+    title = input("Enter the page title: ")
+    body = input("Enter the page body: ")
+    output_file = input("Enter the output file name (e.g., index.html): ")
+
+    generate_html(title, body, output_file)
+    print(f"HTML file generated: {output_file}")
